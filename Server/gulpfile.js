@@ -3,9 +3,9 @@
 var gulp        = require('gulp'),
     typescript  = require('typescript'),
     ts          = require('gulp-typescript'),
+    del         = require('del'),
     browserify  = require('browserify'),
-    source      = require('vinyl-source-stream'),
-    del         = require('del')
+    source      = require('vinyl-source-stream')
     ;
 
 var project = ts.createProject('src/tsconfig.json', {typescript: typescript});
@@ -19,7 +19,7 @@ gulp.task('compile', function () {
 gulp.task('bundle', ['compile'], function () {
   var b = browserify('.tmp/bootstrap.js');
   return b.bundle()
-    .pipe(source('bundle-client.js'))
+    .pipe(source('bundle-server.js'))
     .pipe(gulp.dest('dist'))
   ;
 });
@@ -27,3 +27,5 @@ gulp.task('bundle', ['compile'], function () {
 gulp.task('clean', function (done) {
   del(['.tmp'], done.bind(this));
 });
+
+
