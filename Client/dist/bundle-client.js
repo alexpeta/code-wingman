@@ -1,17 +1,17 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /// <reference path="../typings/bundle.d.ts" />
-(function (factory) {
+(function (dependencies, factory) {
     if (typeof module === 'object' && typeof module.exports === 'object') {
         var v = factory(require, exports); if (v !== undefined) module.exports = v;
     }
     else if (typeof define === 'function' && define.amd) {
-        define(["require", "exports", 'react', 'react-dom', './main'], factory);
+        define(dependencies, factory);
     }
-})(function (require, exports) {
+})(["require", "exports", "react", "react-dom", "./main"], function (require, exports) {
     "use strict";
-    var React = require('react');
-    var ReactDOM = require('react-dom');
-    var main_1 = require('./main');
+    var React = require("react");
+    var ReactDOM = require("react-dom");
+    var main_1 = require("./main");
     ReactDOM.render(React.createElement(main_1.Main), document.getElementById('main'));
 });
 
@@ -22,17 +22,17 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-(function (factory) {
+(function (dependencies, factory) {
     if (typeof module === 'object' && typeof module.exports === 'object') {
         var v = factory(require, exports); if (v !== undefined) module.exports = v;
     }
     else if (typeof define === 'function' && define.amd) {
-        define(["require", "exports", 'react', './todoItem'], factory);
+        define(dependencies, factory);
     }
-})(function (require, exports) {
+})(["require", "exports", "react", "./todoItem"], function (require, exports) {
     "use strict";
-    var React = require('react');
-    var todoItem_1 = require('./todoItem');
+    var React = require("react");
+    var todoItem_1 = require("./todoItem");
     var Main = (function (_super) {
         __extends(Main, _super);
         function Main() {
@@ -67,9 +67,13 @@ var __extends = (this && this.__extends) || function (d, b) {
         Main.prototype.render = function () {
             var _this = this;
             var todoItems = this.state.todoList.map(function (item) {
-                return React.createElement(todoItem_1.TodoItem, {key: item.key, item: item, onRemove: _this.removeItem});
+                return React.createElement(todoItem_1.TodoItem, { key: item.key, item: item, onRemove: _this.removeItem });
             });
-            return (React.createElement("div", null, React.createElement("div", null, React.createElement("input", {type: "text", placeholder: "input new item", value: this.state.newItem.description, onChange: this.changeName}), React.createElement("button", {onClick: this.addItem}, "add")), React.createElement("ul", null, todoItems)));
+            return (React.createElement("div", null,
+                React.createElement("div", null,
+                    React.createElement("input", { type: "text", placeholder: "input new item", value: this.state.newItem.description, onChange: this.changeName }),
+                    React.createElement("button", { onClick: this.addItem }, "add")),
+                React.createElement("ul", null, todoItems)));
         };
         return Main;
     }(React.Component));
@@ -83,16 +87,16 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-(function (factory) {
+(function (dependencies, factory) {
     if (typeof module === 'object' && typeof module.exports === 'object') {
         var v = factory(require, exports); if (v !== undefined) module.exports = v;
     }
     else if (typeof define === 'function' && define.amd) {
-        define(["require", "exports", 'react'], factory);
+        define(dependencies, factory);
     }
-})(function (require, exports) {
+})(["require", "exports", "react"], function (require, exports) {
     "use strict";
-    var React = require('react');
+    var React = require("react");
     var TodoItem = (function (_super) {
         __extends(TodoItem, _super);
         function TodoItem() {
@@ -103,7 +107,12 @@ var __extends = (this && this.__extends) || function (d, b) {
             this.props.onRemove(this.props.item);
         };
         TodoItem.prototype.render = function () {
-            return (React.createElement("li", null, React.createElement("span", null, " ", this.props.item.description, " "), React.createElement("button", {onClick: this.removeItem}, "delete")));
+            return (React.createElement("li", null,
+                React.createElement("span", null,
+                    " ",
+                    this.props.item.description,
+                    " "),
+                React.createElement("button", { onClick: this.removeItem }, "delete")));
         };
         return TodoItem;
     }(React.Component));

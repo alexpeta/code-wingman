@@ -19,7 +19,7 @@ export interface IMainProps {}
 
 export class Main extends React.Component<IMainProps, IMainState> {
 
-    state: IMainState = {newItem: {description: ''}, todoList: []}
+    public state: IMainState = {newItem: {description: ''}, todoList: []}
 
     constructor () {
         super();
@@ -28,7 +28,7 @@ export class Main extends React.Component<IMainProps, IMainState> {
         this.removeItem = this.removeItem.bind(this);
     }
 
-    changeName (e: any) {
+    public changeName (e: any) {
         this.setState({
             newItem: {
                 description: e.target.value
@@ -36,7 +36,7 @@ export class Main extends React.Component<IMainProps, IMainState> {
         });
     }
 
-    addItem () {
+    public addItem () {
         var list = this.state.todoList;
         list.push({
             description: this.state.newItem.description,
@@ -48,12 +48,12 @@ export class Main extends React.Component<IMainProps, IMainState> {
         });
     }
 
-    removeItem (item: ITodo) {
+    public removeItem (item: ITodo) {
         var list = this.state.todoList.filter(i => i.key !== item.key);
         this.setState({todoList: list});
     }
 
-    render () {
+    public render () {
         var todoItems = this.state.todoList.map(item => {
             return <TodoItem key={item.key} item={item} onRemove={this.removeItem} ></TodoItem>;
         });

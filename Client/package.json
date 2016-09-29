@@ -1,5 +1,5 @@
 {
-  "name": "code-wingman-clien",
+  "name": "code-wingman-client",
   "version": "1.0.0",
   "dependencies": {
     "react": "^0.14.3",
